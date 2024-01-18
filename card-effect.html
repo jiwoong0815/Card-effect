@@ -1,21 +1,38 @@
 <div class="container">
+    <div class = "overlay"></div>
     <div class ="card"></div>
 </div>
 
 <script>
     var container = document.querySelector('.container')
+    var overlay = document.querySelector('.overlay')
     container.addEventListener('mousemove', function(e){
     var x = e.offsetX
     var y = e.offsetY
-    console.log(x,y);
-    var x_axis = 2 * x + 20
-    container.style = "transform : rotateY(x_axis)"
+    console.log (x,y)
+    var rotateY = -2/25 * x + 20
+    var rotateX = 1/8 * y - 20
+    overlay.style = `background-position : ${x/3 + y/5}`
+    container.style = `transform : perspective(350px) rotateY(${rotateY}deg) rotateX(${rotateX}deg)`
     })
 </script>
 
 <style>
 .container {
-    width: 500px; height: 320px; transition: 1s;
+    width: 500px; height: 320px; 
+    position: relative;
+}
+.overlay{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg,transparent 40%,rgba(255, 255, 255, 0.4) 40% ,rgba(255, 255, 255, 0.2) 50%, transparent 40%);
+    filter: brightness(2.2) opacity(0.8);
+    mix-blend-mode: color-dodge;
+    background-size: 125% 125%;
+    background-position: 100%;
+    ;
+     
 }
 .card{
     width: 500px; height: 320px;
